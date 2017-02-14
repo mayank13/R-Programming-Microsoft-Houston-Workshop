@@ -94,3 +94,15 @@ df %>%
 1. df$Work_accident %>%  unique()
 1. df %>%  sample_n(10)
 1. ungroup
+
+```{r}
+df %>% sample_n(10)
+```
+
+```{r}
+df %>% 
+  filter(last_evaluation>.5) %>% 
+  group_by(left) %>% 
+  arrange(-average_montly_hours) %>% 
+  mutate(rank_avg_hours = dense_rank(average_montly_hours))
+```
