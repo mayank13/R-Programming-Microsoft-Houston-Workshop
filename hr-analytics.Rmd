@@ -1,0 +1,14 @@
+---
+title: "R Notebook"
+output:
+  html_document: default
+  html_notebook: default
+---
+## Kaggle HR ANalytics: Microsoft R Server Training
+
+```{r}
+library(dplyr)
+library(purrr)
+library(tidyr)
+library(Hmisc)
+```
