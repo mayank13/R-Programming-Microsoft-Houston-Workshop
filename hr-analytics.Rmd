@@ -42,3 +42,12 @@ df %>%
             sum_people_exited = sum(left))
   
 ```
+```{r}
+df %>%
+  group_by(salary) %>% 
+  mutate(salary_low = (salary == "low")) %>%
+  summarise(num_people = n(),
+            frac_promotions = sum(promotion_last_5years)/num_people,
+            frac_people_exited = sum(left)/num_people)
+  
+```

@@ -396,9 +396,20 @@ $ salary                &lt;fctr&gt; low, medium, medium, low, low, low, low, lo
 <pre class="r"><code>NA</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGYgJT4lXG4gIGdyb3VwX2J5KHNhbGFyeSkgJT4lIFxuICBtdXRhdGUoc2FsYXJ5X2xvdyA9IChzYWxhcnkgPT0gXCJsb3dcIikpICU+JVxuICBzdW1tYXJpc2UobnVtX3Blb3BsZSA9IG4oKSxcbiAgICAgICAgICAgIGZyYWNfcHJvbW90aW9ucyA9IHN1bShwcm9tb3Rpb25fbGFzdF81eWVhcnMpL251bV9wZW9wbGUsXG4gICAgICAgICAgICBmcmFjX3Blb3BsZV9leGl0ZWQgPSBzdW0obGVmdCkvbnVtX3Blb3BsZSlcbiAgXG5gYGAifQ== -->
+<pre class="r"><code>df %&gt;%
+  group_by(salary) %&gt;% 
+  mutate(salary_low = (salary == &quot;low&quot;)) %&gt;%
+  summarise(num_people = n(),
+            frac_promotions = sum(promotion_last_5years)/num_people,
+            frac_people_exited = sum(left)/num_people)
+  </code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6DQogIGh0bWxfZG9jdW1lbnQ6IGRlZmF1bHQNCiAgaHRtbF9ub3RlYm9vazogZGVmYXVsdA0KLS0tDQojIyBLYWdnbGUgSFIgQU5hbHl0aWNzOiBNaWNyb3NvZnQgUiBTZXJ2ZXIgVHJhaW5pbmcNCg0KYGBge3J9DQpsaWJyYXJ5KGRwbHlyKQ0KbGlicmFyeShwdXJycikNCmxpYnJhcnkodGlkeXIpDQpsaWJyYXJ5KEhtaXNjKQ0KYGBgDQpgYGB7cn0NCmRmIDwtIHJlYWQuY3N2KCJIUl9jb21tYV9zZXAuY3N2IikNCg0KZGYgJT4lDQogIHN1bW1hcnkNCg0Kc3VtbWFyeShkZikNCmBgYA0KDQpgYGB7cn0NCmRmICU+JSANCiAgZGVzY3JpYmUNCg0Kc3VtbWFyeShkZikNCmBgYA0KDQpgYGB7cn0NCmRmICU+JSANCiAgZ2xpbXBzZQ0KYGBgDQoNCiAgDQpgYGB7cn0NCmRmICU+JQ0KICBncm91cF9ieShzYWxhcnkpICU+JSANCiAgbXV0YXRlKHNhbGFyeV9sb3cgPSAoc2FsYXJ5ID09ICJsb3ciKSkgJT4lDQogIHN1bW1hcmlzZShudW1fcHJvbW90aW9ucyA9IHN1bShwcm9tb3Rpb25fbGFzdF81eWVhcnMpLA0KICAgICAgICAgICAgc3VtX3Blb3BsZV9leGl0ZWQgPSBzdW0obGVmdCkpDQogIA0KYGBgDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6DQogIGh0bWxfZG9jdW1lbnQ6IGRlZmF1bHQNCiAgaHRtbF9ub3RlYm9vazogZGVmYXVsdA0KLS0tDQojIyBLYWdnbGUgSFIgQU5hbHl0aWNzOiBNaWNyb3NvZnQgUiBTZXJ2ZXIgVHJhaW5pbmcNCg0KYGBge3J9DQpsaWJyYXJ5KGRwbHlyKQ0KbGlicmFyeShwdXJycikNCmxpYnJhcnkodGlkeXIpDQpsaWJyYXJ5KEhtaXNjKQ0KYGBgDQpgYGB7cn0NCmRmIDwtIHJlYWQuY3N2KCJIUl9jb21tYV9zZXAuY3N2IikNCg0KZGYgJT4lDQogIHN1bW1hcnkNCg0Kc3VtbWFyeShkZikNCmBgYA0KDQpgYGB7cn0NCmRmICU+JSANCiAgZGVzY3JpYmUNCg0Kc3VtbWFyeShkZikNCmBgYA0KDQpgYGB7cn0NCmRmICU+JSANCiAgZ2xpbXBzZQ0KYGBgDQoNCiAgDQpgYGB7cn0NCmRmICU+JQ0KICBncm91cF9ieShzYWxhcnkpICU+JSANCiAgbXV0YXRlKHNhbGFyeV9sb3cgPSAoc2FsYXJ5ID09ICJsb3ciKSkgJT4lDQogIHN1bW1hcmlzZShudW1fcHJvbW90aW9ucyA9IHN1bShwcm9tb3Rpb25fbGFzdF81eWVhcnMpLA0KICAgICAgICAgICAgc3VtX3Blb3BsZV9leGl0ZWQgPSBzdW0obGVmdCkpDQogIA0KYGBgDQpgYGB7cn0NCmRmICU+JQ0KICBncm91cF9ieShzYWxhcnkpICU+JSANCiAgbXV0YXRlKHNhbGFyeV9sb3cgPSAoc2FsYXJ5ID09ICJsb3ciKSkgJT4lDQogIHN1bW1hcmlzZShudW1fcGVvcGxlID0gbigpLA0KICAgICAgICAgICAgZnJhY19wcm9tb3Rpb25zID0gc3VtKHByb21vdGlvbl9sYXN0XzV5ZWFycykvbnVtX3Blb3BsZSwNCiAgICAgICAgICAgIGZyYWNfcGVvcGxlX2V4aXRlZCA9IHN1bShsZWZ0KS9udW1fcGVvcGxlKQ0KICANCmBgYA0K</div>
 
 
 
