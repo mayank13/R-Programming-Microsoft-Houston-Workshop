@@ -397,19 +397,41 @@ $ salary                &lt;fctr&gt; low, medium, medium, low, low, low, low, lo
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGYgJT4lXG4gIGdyb3VwX2J5KHNhbGFyeSkgJT4lIFxuICBtdXRhdGUoc2FsYXJ5X2xvdyA9IChzYWxhcnkgPT0gXCJsb3dcIikpICU+JVxuICBzdW1tYXJpc2UobnVtX3Blb3BsZSA9IG4oKSxcbiAgICAgICAgICAgIGZyYWNfcHJvbW90aW9ucyA9IHN1bShwcm9tb3Rpb25fbGFzdF81eWVhcnMpL251bV9wZW9wbGUsXG4gICAgICAgICAgICBmcmFjX3Blb3BsZV9leGl0ZWQgPSBzdW0obGVmdCkvbnVtX3Blb3BsZSlcbiAgXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGYgJT4lXG4gIGdyb3VwX2J5KHNhbGFyeSkgJT4lIFxuICBtdXRhdGUoc2FsYXJ5X2xvdyA9IChzYWxhcnkgPT0gXCJsb3dcIikpICU+JVxuICBzdW1tYXJpc2UobnVtX3Blb3BsZSA9IG4oKSxcbiAgICAgICAgICAgIGZyYWNfcHJvbW90aW9ucyA9IHN1bShwcm9tb3Rpb25fbGFzdF81eWVhcnMpL251bV9wZW9wbGUsXG4gICAgICAgICAgICBmcmFjX3Blb3BsZV9leGl0ZWQgPSBzdW0obGVmdCkvbnVtX3Blb3BsZSlcbmBgYCJ9 -->
 <pre class="r"><code>df %&gt;%
   group_by(salary) %&gt;% 
   mutate(salary_low = (salary == &quot;low&quot;)) %&gt;%
   summarise(num_people = n(),
             frac_promotions = sum(promotion_last_5years)/num_people,
-            frac_people_exited = sum(left)/num_people)
+            frac_people_exited = sum(left)/num_people)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibmNvbCI6NCwibnJvdyI6M30sInJkZiI6Ikg0c0lBQUFBQUFBQUJsMVJ2MHZEUUJSK3pRK2xBVnRSRkFRM3dhMEJkWFBKNHF6Z1lyZHlKdGMyZUxrTFNXcmJSY1MvUVRxNU9vbmc0cXdGWFFRbmRWQndjaFJ4N1dMalhYSlhhSWE3OTkzMzNyMzN2ZmYyZCtxYlZ0MENBQTEwWFFOTjU5RFErRlVDQThyQzlnRDBSY0Z5TzhldG5qbkZod3hQQmM4UWZJeEp6TkY4NXMxWm8rMjMyaExyaEhWVmNJQTl2eE1VVXBndVFiSEtNTW5iUkc3Q0lvN0cvRWdWeGh2QTZqbkFpczNmRmNFNTE4L0xvK0h0a25QV2Z6eHhmeCtjaS91UHdmRHlaK0svR1IzYzBkMXQ1d1hXWHI4KzM1Mm45ZS9CMXQ1VkxrRlBDMVV0RHlYSWJrWW93RVdSbEhOS3BLRkV4b2lncUs4KzAwN1FDREVMQ1paTWxXZHlHMkhFQXBiNGpNYVNYc2pwTExLQmUzNkN2VUsxY3NTNnRxb29tdGRPK1pXbTZWOCtrS25nV1JibTJVRVRXek1MUFpXaUFsSHRVSkhhcTdudERqMnFiUWpwY3NNZ3k1WGsxaFUyOHBLR21wZXBCb0JweTZlcVhaT2dRMHprbzhKYnlEcXd3OGluaVpvUloyTTdZUWxTY1piTGlHTHlaWS8vQWNINU11S2pBZ0FBIn0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["salary"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["num_people"],"name":[2],"type":["int"],"align":["right"]},{"label":["frac_promotions"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["frac_people_exited"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"high","2":"1237","3":"0.058205335","4":"0.06628941"},{"1":"low","2":"7316","3":"0.009021323","4":"0.29688354"},{"1":"medium","2":"6446","3":"0.028079429","4":"0.20431275"}],"options":{"columns":{"min":{},"max":[10],"total":[4]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTkFcbmBgYCJ9 -->
+<pre class="r"><code>NA</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5kZiAlPiVcbiAgZ3JvdXBfYnkoc2FsYXJ5KSAlPiUgXG4gIG11dGF0ZShzYWxhcnlfbG93ID0gKHNhbGFyeSA9PSBcImxvd1wiKSkgJT4lXG4gIHN1bW1hcmlzZShudW1fcGVvcGxlID0gbigpLFxuICAgICAgICAgICAgZnJhY19wcm9tb3Rpb25zID0gc3VtKHByb21vdGlvbl9sYXN0XzV5ZWFycykvbnVtX3Blb3BsZSxcbiAgICAgICAgICAgIGZyYWNfcGVvcGxlX2V4aXRlZCA9IHN1bShsZWZ0KS9udW1fcGVvcGxlKSAtPiBkZjJcbmRmMlxuICBcbmBgYCJ9 -->
+<pre class="r"><code>
+df %&gt;%
+  group_by(salary) %&gt;% 
+  mutate(salary_low = (salary == &quot;low&quot;)) %&gt;%
+  summarise(num_people = n(),
+            frac_promotions = sum(promotion_last_5years)/num_people,
+            frac_people_exited = sum(left)/num_people) -&gt; df2
+df2
   </code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6DQogIGh0bWxfZG9jdW1lbnQ6IGRlZmF1bHQNCiAgaHRtbF9ub3RlYm9vazogZGVmYXVsdA0KLS0tDQojIyBLYWdnbGUgSFIgQU5hbHl0aWNzOiBNaWNyb3NvZnQgUiBTZXJ2ZXIgVHJhaW5pbmcNCg0KYGBge3J9DQpsaWJyYXJ5KGRwbHlyKQ0KbGlicmFyeShwdXJycikNCmxpYnJhcnkodGlkeXIpDQpsaWJyYXJ5KEhtaXNjKQ0KYGBgDQpgYGB7cn0NCmRmIDwtIHJlYWQuY3N2KCJIUl9jb21tYV9zZXAuY3N2IikNCg0KZGYgJT4lDQogIHN1bW1hcnkNCg0Kc3VtbWFyeShkZikNCmBgYA0KDQpgYGB7cn0NCmRmICU+JSANCiAgZGVzY3JpYmUNCg0Kc3VtbWFyeShkZikNCmBgYA0KDQpgYGB7cn0NCmRmICU+JSANCiAgZ2xpbXBzZQ0KYGBgDQoNCiAgDQpgYGB7cn0NCmRmICU+JQ0KICBncm91cF9ieShzYWxhcnkpICU+JSANCiAgbXV0YXRlKHNhbGFyeV9sb3cgPSAoc2FsYXJ5ID09ICJsb3ciKSkgJT4lDQogIHN1bW1hcmlzZShudW1fcHJvbW90aW9ucyA9IHN1bShwcm9tb3Rpb25fbGFzdF81eWVhcnMpLA0KICAgICAgICAgICAgc3VtX3Blb3BsZV9leGl0ZWQgPSBzdW0obGVmdCkpDQogIA0KYGBgDQpgYGB7cn0NCmRmICU+JQ0KICBncm91cF9ieShzYWxhcnkpICU+JSANCiAgbXV0YXRlKHNhbGFyeV9sb3cgPSAoc2FsYXJ5ID09ICJsb3ciKSkgJT4lDQogIHN1bW1hcmlzZShudW1fcGVvcGxlID0gbigpLA0KICAgICAgICAgICAgZnJhY19wcm9tb3Rpb25zID0gc3VtKHByb21vdGlvbl9sYXN0XzV5ZWFycykvbnVtX3Blb3BsZSwNCiAgICAgICAgICAgIGZyYWNfcGVvcGxlX2V4aXRlZCA9IHN1bShsZWZ0KS9udW1fcGVvcGxlKQ0KICANCmBgYA0K</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6DQogIGh0bWxfZG9jdW1lbnQ6IGRlZmF1bHQNCiAgaHRtbF9ub3RlYm9vazogZGVmYXVsdA0KLS0tDQojIyBLYWdnbGUgSFIgQU5hbHl0aWNzOiBNaWNyb3NvZnQgUiBTZXJ2ZXIgVHJhaW5pbmcNCg0KYGBge3J9DQpsaWJyYXJ5KGRwbHlyKQ0KbGlicmFyeShwdXJycikNCmxpYnJhcnkodGlkeXIpDQpsaWJyYXJ5KEhtaXNjKQ0KYGBgDQpgYGB7cn0NCmRmIDwtIHJlYWQuY3N2KCJIUl9jb21tYV9zZXAuY3N2IikNCg0KZGYgJT4lDQogIHN1bW1hcnkNCg0Kc3VtbWFyeShkZikNCmBgYA0KDQpgYGB7cn0NCmRmICU+JSANCiAgZGVzY3JpYmUNCg0Kc3VtbWFyeShkZikNCmBgYA0KDQpgYGB7cn0NCmRmICU+JSANCiAgZ2xpbXBzZQ0KYGBgDQoNCiAgDQpgYGB7cn0NCmRmICU+JQ0KICBncm91cF9ieShzYWxhcnkpICU+JSANCiAgbXV0YXRlKHNhbGFyeV9sb3cgPSAoc2FsYXJ5ID09ICJsb3ciKSkgJT4lDQogIHN1bW1hcmlzZShudW1fcHJvbW90aW9ucyA9IHN1bShwcm9tb3Rpb25fbGFzdF81eWVhcnMpLA0KICAgICAgICAgICAgc3VtX3Blb3BsZV9leGl0ZWQgPSBzdW0obGVmdCkpDQogIA0KYGBgDQpgYGB7cn0NCg0KZGYgJT4lDQogIGdyb3VwX2J5KHNhbGFyeSkgJT4lIA0KICBtdXRhdGUoc2FsYXJ5X2xvdyA9IChzYWxhcnkgPT0gImxvdyIpKSAlPiUNCiAgc3VtbWFyaXNlKG51bV9wZW9wbGUgPSBuKCksDQogICAgICAgICAgICBmcmFjX3Byb21vdGlvbnMgPSBzdW0ocHJvbW90aW9uX2xhc3RfNXllYXJzKS9udW1fcGVvcGxlLA0KICAgICAgICAgICAgZnJhY19wZW9wbGVfZXhpdGVkID0gc3VtKGxlZnQpL251bV9wZW9wbGUpDQogIA0KYGBgDQpgYGB7cn0NCg0KZGYgJT4lDQogIGdyb3VwX2J5KHNhbGFyeSkgJT4lIA0KICBtdXRhdGUoc2FsYXJ5X2xvdyA9IChzYWxhcnkgPT0gImxvdyIpKSAlPiUNCiAgc3VtbWFyaXNlKG51bV9wZW9wbGUgPSBuKCksDQogICAgICAgICAgICBmcmFjX3Byb21vdGlvbnMgPSBzdW0ocHJvbW90aW9uX2xhc3RfNXllYXJzKS9udW1fcGVvcGxlLA0KICAgICAgICAgICAgZnJhY19wZW9wbGVfZXhpdGVkID0gc3VtKGxlZnQpL251bV9wZW9wbGUpIC0+IGRmMg0KZGYyDQogIA0KYGBg</div>
 
 
 
