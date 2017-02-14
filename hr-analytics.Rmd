@@ -88,3 +88,9 @@ df %>%
             avg_satisfaction = mean(satisfaction_level)
             )
 ```
+## Quick Tips for checking data
+1. df$
+1. df$Work_accident %>%  describe
+1. df$Work_accident %>%  unique()
+1. df %>%  sample_n(10)
+1. ungroup

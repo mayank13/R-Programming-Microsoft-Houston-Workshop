@@ -383,6 +383,31 @@ df2</code></pre>
 </ol>
 </div>
 </div>
+<div id="my-solution" class="section level1">
+<h1>My Solution</h1>
+<pre class="r"><code>df %&gt;% 
+  group_by(left) %&gt;% 
+  mutate(positive_review = (last_evaluation &gt; .5 )) %&gt;% 
+  summarise(num_people_left = n(),
+            Num_positive_review = sum(positive_review),
+            num_accidents = sum(Work_accident),
+            avg_satisfaction = mean(satisfaction_level)
+            )</code></pre>
+<pre><code>## # A tibble: 2 × 5
+##    left num_people_left Num_positive_review num_accidents avg_satisfaction
+##   &lt;int&gt;           &lt;int&gt;               &lt;int&gt;         &lt;int&gt;            &lt;dbl&gt;
+## 1     0           11428               10233          2000        0.6668096
+## 2     1            3571                2845           169        0.4400980</code></pre>
+<div id="quick-tips-for-checking-data" class="section level2">
+<h2>Quick Tips for checking data</h2>
+<ol style="list-style-type: decimal">
+<li>df$</li>
+<li>df$Work_accident %&gt;% describe</li>
+<li>df$Work_accident %&gt;% unique()</li>
+<li>df %&gt;% sample_n(10)</li>
+</ol>
+</div>
+</div>
 
 
 
