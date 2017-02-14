@@ -12,3 +12,19 @@ library(purrr)
 library(tidyr)
 library(Hmisc)
 ```
+```{r}
+df <- read.csv("HR_comma_sep.csv")
+
+df %>%
+  summary
+
+summary(df)
+```
+
+```{r}
+df %>% 
+  describe
+
+summary(df)
+```
+

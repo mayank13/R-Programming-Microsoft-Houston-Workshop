@@ -176,59 +176,38 @@ $(document).ready(function () {
 <h2>Kaggle HR ANalytics: Microsoft R Server Training</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShkcGx5cilcbmBgYCJ9 -->
-<pre class="r"><code>library(dplyr)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5BdHRhY2hpbmcgcGFja2FnZTog46S847ixZHBseXLjpLzjuLJcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDjpLzjuLFwYWNrYWdlOnN0YXRz46S847iyOlxuXG4gICAgZmlsdGVyLCBsYWdcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDjpLzjuLFwYWNrYWdlOmJhc2XjpLzjuLI6XG5cbiAgICBpbnRlcnNlY3QsIHNldGRpZmYsIHNldGVxdWFsLCB1bmlvblxuIn0= -->
-<pre><code>
-Attaching package: 㤼㸱dplyr㤼㸲
-
-The following objects are masked from 㤼㸱package:stats㤼㸲:
-
-    filter, lag
-
-The following objects are masked from 㤼㸱package:base㤼㸲:
-
-    intersect, setdiff, setequal, union</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShwdXJycilcbmBgYCJ9 -->
-<pre class="r"><code>library(purrr)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5BdHRhY2hpbmcgcGFja2FnZTog46S847ixcHVycnLjpLzjuLJcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDjpLzjuLFwYWNrYWdlOmRwbHly46S847iyOlxuXG4gICAgY29udGFpbnMsIG9yZGVyX2J5XG4ifQ== -->
-<pre><code>
-Attaching package: 㤼㸱purrr㤼㸲
-
-The following objects are masked from 㤼㸱package:dplyr㤼㸲:
-
-    contains, order_by</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5cilcbmxpYnJhcnkoSG1pc2MpXG5gYGAifQ== -->
-<pre class="r"><code>library(tidyr)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShkcGx5cilcbmxpYnJhcnkocHVycnIpXG5saWJyYXJ5KHRpZHlyKVxubGlicmFyeShIbWlzYylcbmBgYCJ9 -->
+<pre class="r"><code>library(dplyr)
+library(purrr)
+library(tidyr)
 library(Hmisc)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiBzdXJ2aXZhbFxuTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiBGb3JtdWxhXG5Mb2FkaW5nIHJlcXVpcmVkIHBhY2thZ2U6IGdncGxvdDJcblxuQXR0YWNoaW5nIHBhY2thZ2U6IOOkvOO4sUhtaXNj46S847iyXG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0cyBhcmUgbWFza2VkIGZyb20g46S847ixcGFja2FnZTpkcGx5cuOkvOO4sjpcblxuICAgIGNvbWJpbmUsIHNyYywgc3VtbWFyaXplXG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0IGlzIG1hc2tlZCBmcm9tIOOkvOO4sXRvb2xzOnJzdHVkaW/jpLzjuLI6XG5cbiAgICBwcmludC5odG1sXG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0cyBhcmUgbWFza2VkIGZyb20g46S847ixcGFja2FnZTpiYXNl46S847iyOlxuXG4gICAgZm9ybWF0LnB2YWwsIHJvdW5kLlBPU0lYdCwgdHJ1bmMuUE9TSVh0LCB1bml0c1xuIn0= -->
-<pre><code>Loading required package: survival
-Loading required package: Formula
-Loading required package: ggplot2
-
-Attaching package: 㤼㸱Hmisc㤼㸲
-
-The following objects are masked from 㤼㸱package:dplyr㤼㸲:
-
-    combine, src, summarize
-
-The following object is masked from 㤼㸱tools:rstudio㤼㸲:
-
-    print.html
-
-The following objects are masked from 㤼㸱package:base㤼㸲:
-
-    format.pval, round.POSIXt, trunc.POSIXt, units</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGYgPC0gcmVhZC5jc3YoXCJIUl9jb21tYV9zZXAuY3N2XCIpXG5cbmRmICU+JVxuICBzdW1tYXJ5XG5cbnN1bW1hcnkoZGYpXG5gYGAifQ== -->
+<pre class="r"><code>df &lt;- read.csv(&quot;HR_comma_sep.csv&quot;)
+
+df %&gt;%
+  summary
+
+summary(df)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGYgJT4lIFxuICBkZXNjcmliZVxuXG5zdW1tYXJ5KGRmKVxuYGBgIn0= -->
+<pre class="r"><code>df %&gt;% 
+  describe
+
+summary(df)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6DQogIGh0bWxfZG9jdW1lbnQ6IGRlZmF1bHQNCiAgaHRtbF9ub3RlYm9vazogZGVmYXVsdA0KLS0tDQojIyBLYWdnbGUgSFIgQU5hbHl0aWNzOiBNaWNyb3NvZnQgUiBTZXJ2ZXIgVHJhaW5pbmcNCg0KYGBge3J9DQpsaWJyYXJ5KGRwbHlyKQ0KbGlicmFyeShwdXJycikNCmxpYnJhcnkodGlkeXIpDQpsaWJyYXJ5KEhtaXNjKQ0KYGBg</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6DQogIGh0bWxfZG9jdW1lbnQ6IGRlZmF1bHQNCiAgaHRtbF9ub3RlYm9vazogZGVmYXVsdA0KLS0tDQojIyBLYWdnbGUgSFIgQU5hbHl0aWNzOiBNaWNyb3NvZnQgUiBTZXJ2ZXIgVHJhaW5pbmcNCg0KYGBge3J9DQpsaWJyYXJ5KGRwbHlyKQ0KbGlicmFyeShwdXJycikNCmxpYnJhcnkodGlkeXIpDQpsaWJyYXJ5KEhtaXNjKQ0KYGBgDQpgYGB7cn0NCmRmIDwtIHJlYWQuY3N2KCJIUl9jb21tYV9zZXAuY3N2IikNCg0KZGYgJT4lDQogIHN1bW1hcnkNCg0Kc3VtbWFyeShkZikNCmBgYA0KDQpgYGB7cn0NCmRmICU+JSANCiAgZGVzY3JpYmUNCg0Kc3VtbWFyeShkZikNCmBgYA0KDQo=</div>
 
 
 
