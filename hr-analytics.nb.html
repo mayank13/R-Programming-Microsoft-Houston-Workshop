@@ -176,38 +176,229 @@ $(document).ready(function () {
 <h2>Kaggle HR ANalytics: Microsoft R Server Training</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShkcGx5cilcbmxpYnJhcnkocHVycnIpXG5saWJyYXJ5KHRpZHlyKVxubGlicmFyeShIbWlzYylcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShkcGx5cilcbmxpYnJhcnkocHVycnIpXG5gYGAifQ== -->
 <pre class="r"><code>library(dplyr)
-library(purrr)
-library(tidyr)
+library(purrr)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5BdHRhY2hpbmcgcGFja2FnZTog46S847ixcHVycnLjpLzjuLJcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDjpLzjuLFwYWNrYWdlOmRwbHly46S847iyOlxuXG4gICAgY29udGFpbnMsIG9yZGVyX2J5XG4ifQ== -->
+<pre><code>
+Attaching package: 㤼㸱purrr㤼㸲
+
+The following objects are masked from 㤼㸱package:dplyr㤼㸲:
+
+    contains, order_by</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5cilcbmxpYnJhcnkoSG1pc2MpXG5gYGAifQ== -->
+<pre class="r"><code>library(tidyr)
 library(Hmisc)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiBzdXJ2aXZhbFxuTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiBGb3JtdWxhXG5Mb2FkaW5nIHJlcXVpcmVkIHBhY2thZ2U6IGdncGxvdDJcblxuQXR0YWNoaW5nIHBhY2thZ2U6IOOkvOO4sUhtaXNj46S847iyXG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0cyBhcmUgbWFza2VkIGZyb20g46S847ixcGFja2FnZTpkcGx5cuOkvOO4sjpcblxuICAgIGNvbWJpbmUsIHNyYywgc3VtbWFyaXplXG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0IGlzIG1hc2tlZCBmcm9tIOOkvOO4sXRvb2xzOnJzdHVkaW/jpLzjuLI6XG5cbiAgICBwcmludC5odG1sXG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0cyBhcmUgbWFza2VkIGZyb20g46S847ixcGFja2FnZTpiYXNl46S847iyOlxuXG4gICAgZm9ybWF0LnB2YWwsIHJvdW5kLlBPU0lYdCwgdHJ1bmMuUE9TSVh0LCB1bml0c1xuIn0= -->
+<pre><code>Loading required package: survival
+Loading required package: Formula
+Loading required package: ggplot2
+
+Attaching package: 㤼㸱Hmisc㤼㸲
+
+The following objects are masked from 㤼㸱package:dplyr㤼㸲:
+
+    combine, src, summarize
+
+The following object is masked from 㤼㸱tools:rstudio㤼㸲:
+
+    print.html
+
+The following objects are masked from 㤼㸱package:base㤼㸲:
+
+    format.pval, round.POSIXt, trunc.POSIXt, units</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGYgPC0gcmVhZC5jc3YoXCJIUl9jb21tYV9zZXAuY3N2XCIpXG5cbmRmICU+JVxuICBzdW1tYXJ5XG5cbnN1bW1hcnkoZGYpXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGYgPC0gcmVhZC5jc3YoXCJIUl9jb21tYV9zZXAuY3N2XCIpXG5kZiAlPiVcbiAgc3VtbWFyeVxuYGBgIn0= -->
 <pre class="r"><code>df &lt;- read.csv(&quot;HR_comma_sep.csv&quot;)
-
 df %&gt;%
-  summary
-
-summary(df)</code></pre>
+  summary</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIHNhdGlzZmFjdGlvbl9sZXZlbCBsYXN0X2V2YWx1YXRpb24gIG51bWJlcl9wcm9qZWN0ICBhdmVyYWdlX21vbnRseV9ob3VycyB0aW1lX3NwZW5kX2NvbXBhbnkgV29ya19hY2NpZGVudCAgIFxuIE1pbi4gICA6MC4wOTAwICAgICBNaW4uICAgOjAuMzYwMCAgIE1pbi4gICA6Mi4wMDAgICBNaW4uICAgOiA5Ni4wICAgICAgICBNaW4uICAgOiAyLjAwMCAgICAgTWluLiAgIDowLjAwMDAgIFxuIDFzdCBRdS46MC40NDAwICAgICAxc3QgUXUuOjAuNTYwMCAgIDFzdCBRdS46My4wMDAgICAxc3QgUXUuOjE1Ni4wICAgICAgICAxc3QgUXUuOiAzLjAwMCAgICAgMXN0IFF1LjowLjAwMDAgIFxuIE1lZGlhbiA6MC42NDAwICAgICBNZWRpYW4gOjAuNzIwMCAgIE1lZGlhbiA6NC4wMDAgICBNZWRpYW4gOjIwMC4wICAgICAgICBNZWRpYW4gOiAzLjAwMCAgICAgTWVkaWFuIDowLjAwMDAgIFxuIE1lYW4gICA6MC42MTI4ICAgICBNZWFuICAgOjAuNzE2MSAgIE1lYW4gICA6My44MDMgICBNZWFuICAgOjIwMS4xICAgICAgICBNZWFuICAgOiAzLjQ5OCAgICAgTWVhbiAgIDowLjE0NDYgIFxuIDNyZCBRdS46MC44MjAwICAgICAzcmQgUXUuOjAuODcwMCAgIDNyZCBRdS46NS4wMDAgICAzcmQgUXUuOjI0NS4wICAgICAgICAzcmQgUXUuOiA0LjAwMCAgICAgM3JkIFF1LjowLjAwMDAgIFxuIE1heC4gICA6MS4wMDAwICAgICBNYXguICAgOjEuMDAwMCAgIE1heC4gICA6Ny4wMDAgICBNYXguICAgOjMxMC4wICAgICAgICBNYXguICAgOjEwLjAwMCAgICAgTWF4LiAgIDoxLjAwMDAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICAgICAgbGVmdCAgICAgICAgcHJvbW90aW9uX2xhc3RfNXllYXJzICAgICAgICAgc2FsZXMgICAgICAgICBzYWxhcnkgICAgXG4gTWluLiAgIDowLjAwMDAgICBNaW4uICAgOjAuMDAwMDAgICAgICAgc2FsZXMgICAgICA6NDE0MCAgIGhpZ2ggIDoxMjM3ICBcbiAxc3QgUXUuOjAuMDAwMCAgIDFzdCBRdS46MC4wMDAwMCAgICAgICB0ZWNobmljYWwgIDoyNzIwICAgbG93ICAgOjczMTYgIFxuIE1lZGlhbiA6MC4wMDAwICAgTWVkaWFuIDowLjAwMDAwICAgICAgIHN1cHBvcnQgICAgOjIyMjkgICBtZWRpdW06NjQ0NiAgXG4gTWVhbiAgIDowLjIzODEgICBNZWFuICAgOjAuMDIxMjcgICAgICAgSVQgICAgICAgICA6MTIyNyAgICAgICAgICAgICAgICBcbiAzcmQgUXUuOjAuMDAwMCAgIDNyZCBRdS46MC4wMDAwMCAgICAgICBwcm9kdWN0X21uZzogOTAyICAgICAgICAgICAgICAgIFxuIE1heC4gICA6MS4wMDAwICAgTWF4LiAgIDoxLjAwMDAwICAgICAgIG1hcmtldGluZyAgOiA4NTggICAgICAgICAgICAgICAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKE90aGVyKSAgICA6MjkyMyAgICAgICAgICAgICAgICBcbiJ9 -->
+<pre><code> satisfaction_level last_evaluation  number_project  average_montly_hours time_spend_company Work_accident   
+ Min.   :0.0900     Min.   :0.3600   Min.   :2.000   Min.   : 96.0        Min.   : 2.000     Min.   :0.0000  
+ 1st Qu.:0.4400     1st Qu.:0.5600   1st Qu.:3.000   1st Qu.:156.0        1st Qu.: 3.000     1st Qu.:0.0000  
+ Median :0.6400     Median :0.7200   Median :4.000   Median :200.0        Median : 3.000     Median :0.0000  
+ Mean   :0.6128     Mean   :0.7161   Mean   :3.803   Mean   :201.1        Mean   : 3.498     Mean   :0.1446  
+ 3rd Qu.:0.8200     3rd Qu.:0.8700   3rd Qu.:5.000   3rd Qu.:245.0        3rd Qu.: 4.000     3rd Qu.:0.0000  
+ Max.   :1.0000     Max.   :1.0000   Max.   :7.000   Max.   :310.0        Max.   :10.000     Max.   :1.0000  
+                                                                                                             
+      left        promotion_last_5years         sales         salary    
+ Min.   :0.0000   Min.   :0.00000       sales      :4140   high  :1237  
+ 1st Qu.:0.0000   1st Qu.:0.00000       technical  :2720   low   :7316  
+ Median :0.0000   Median :0.00000       support    :2229   medium:6446  
+ Mean   :0.2381   Mean   :0.02127       IT         :1227                
+ 3rd Qu.:0.0000   3rd Qu.:0.00000       product_mng: 902                
+ Max.   :1.0000   Max.   :1.00000       marketing  : 858                
+                                        (Other)    :2923                </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeShkZilcbmBgYCJ9 -->
+<pre class="r"><code>summary(df)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIHNhdGlzZmFjdGlvbl9sZXZlbCBsYXN0X2V2YWx1YXRpb24gIG51bWJlcl9wcm9qZWN0ICBhdmVyYWdlX21vbnRseV9ob3VycyB0aW1lX3NwZW5kX2NvbXBhbnkgV29ya19hY2NpZGVudCAgIFxuIE1pbi4gICA6MC4wOTAwICAgICBNaW4uICAgOjAuMzYwMCAgIE1pbi4gICA6Mi4wMDAgICBNaW4uICAgOiA5Ni4wICAgICAgICBNaW4uICAgOiAyLjAwMCAgICAgTWluLiAgIDowLjAwMDAgIFxuIDFzdCBRdS46MC40NDAwICAgICAxc3QgUXUuOjAuNTYwMCAgIDFzdCBRdS46My4wMDAgICAxc3QgUXUuOjE1Ni4wICAgICAgICAxc3QgUXUuOiAzLjAwMCAgICAgMXN0IFF1LjowLjAwMDAgIFxuIE1lZGlhbiA6MC42NDAwICAgICBNZWRpYW4gOjAuNzIwMCAgIE1lZGlhbiA6NC4wMDAgICBNZWRpYW4gOjIwMC4wICAgICAgICBNZWRpYW4gOiAzLjAwMCAgICAgTWVkaWFuIDowLjAwMDAgIFxuIE1lYW4gICA6MC42MTI4ICAgICBNZWFuICAgOjAuNzE2MSAgIE1lYW4gICA6My44MDMgICBNZWFuICAgOjIwMS4xICAgICAgICBNZWFuICAgOiAzLjQ5OCAgICAgTWVhbiAgIDowLjE0NDYgIFxuIDNyZCBRdS46MC44MjAwICAgICAzcmQgUXUuOjAuODcwMCAgIDNyZCBRdS46NS4wMDAgICAzcmQgUXUuOjI0NS4wICAgICAgICAzcmQgUXUuOiA0LjAwMCAgICAgM3JkIFF1LjowLjAwMDAgIFxuIE1heC4gICA6MS4wMDAwICAgICBNYXguICAgOjEuMDAwMCAgIE1heC4gICA6Ny4wMDAgICBNYXguICAgOjMxMC4wICAgICAgICBNYXguICAgOjEwLjAwMCAgICAgTWF4LiAgIDoxLjAwMDAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICAgICAgbGVmdCAgICAgICAgcHJvbW90aW9uX2xhc3RfNXllYXJzICAgICAgICAgc2FsZXMgICAgICAgICBzYWxhcnkgICAgXG4gTWluLiAgIDowLjAwMDAgICBNaW4uICAgOjAuMDAwMDAgICAgICAgc2FsZXMgICAgICA6NDE0MCAgIGhpZ2ggIDoxMjM3ICBcbiAxc3QgUXUuOjAuMDAwMCAgIDFzdCBRdS46MC4wMDAwMCAgICAgICB0ZWNobmljYWwgIDoyNzIwICAgbG93ICAgOjczMTYgIFxuIE1lZGlhbiA6MC4wMDAwICAgTWVkaWFuIDowLjAwMDAwICAgICAgIHN1cHBvcnQgICAgOjIyMjkgICBtZWRpdW06NjQ0NiAgXG4gTWVhbiAgIDowLjIzODEgICBNZWFuICAgOjAuMDIxMjcgICAgICAgSVQgICAgICAgICA6MTIyNyAgICAgICAgICAgICAgICBcbiAzcmQgUXUuOjAuMDAwMCAgIDNyZCBRdS46MC4wMDAwMCAgICAgICBwcm9kdWN0X21uZzogOTAyICAgICAgICAgICAgICAgIFxuIE1heC4gICA6MS4wMDAwICAgTWF4LiAgIDoxLjAwMDAwICAgICAgIG1hcmtldGluZyAgOiA4NTggICAgICAgICAgICAgICAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKE90aGVyKSAgICA6MjkyMyAgICAgICAgICAgICAgICBcbiJ9 -->
+<pre><code> satisfaction_level last_evaluation  number_project  average_montly_hours time_spend_company Work_accident   
+ Min.   :0.0900     Min.   :0.3600   Min.   :2.000   Min.   : 96.0        Min.   : 2.000     Min.   :0.0000  
+ 1st Qu.:0.4400     1st Qu.:0.5600   1st Qu.:3.000   1st Qu.:156.0        1st Qu.: 3.000     1st Qu.:0.0000  
+ Median :0.6400     Median :0.7200   Median :4.000   Median :200.0        Median : 3.000     Median :0.0000  
+ Mean   :0.6128     Mean   :0.7161   Mean   :3.803   Mean   :201.1        Mean   : 3.498     Mean   :0.1446  
+ 3rd Qu.:0.8200     3rd Qu.:0.8700   3rd Qu.:5.000   3rd Qu.:245.0        3rd Qu.: 4.000     3rd Qu.:0.0000  
+ Max.   :1.0000     Max.   :1.0000   Max.   :7.000   Max.   :310.0        Max.   :10.000     Max.   :1.0000  
+                                                                                                             
+      left        promotion_last_5years         sales         salary    
+ Min.   :0.0000   Min.   :0.00000       sales      :4140   high  :1237  
+ 1st Qu.:0.0000   1st Qu.:0.00000       technical  :2720   low   :7316  
+ Median :0.0000   Median :0.00000       support    :2229   medium:6446  
+ Mean   :0.2381   Mean   :0.02127       IT         :1227                
+ 3rd Qu.:0.0000   3rd Qu.:0.00000       product_mng: 902                
+ Max.   :1.0000   Max.   :1.00000       marketing  : 858                
+                                        (Other)    :2923                </code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGYgJT4lIFxuICBkZXNjcmliZVxuXG5zdW1tYXJ5KGRmKVxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGYgJT4lIFxuICBkZXNjcmliZVxuYGBgIn0= -->
 <pre class="r"><code>df %&gt;% 
-  describe
-
-summary(df)</code></pre>
+  describe</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiLiBcblxuIDEwICBWYXJpYWJsZXMgICAgICAxNDk5OSAgT2JzZXJ2YXRpb25zXG4tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS1cbnNhdGlzZmFjdGlvbl9sZXZlbCBcbiAgICAgIG4gbWlzc2luZyAgdW5pcXVlICAgIEluZm8gICAgTWVhbiAgICAgLjA1ICAgICAuMTAgICAgIC4yNSAgICAgLjUwICAgICAuNzUgICAgIC45MCAgICAgLjk1IFxuICAxNDk5OSAgICAgICAwICAgICAgOTIgICAgICAgMSAgMC42MTI4ICAgIDAuMTEgICAgMC4yMSAgICAwLjQ0ICAgIDAuNjQgICAgMC44MiAgICAwLjkyICAgIDAuOTYgXG5cbmxvd2VzdCA6IDAuMDkgMC4xMCAwLjExIDAuMTIgMC4xMywgaGlnaGVzdDogMC45NiAwLjk3IDAuOTggMC45OSAxLjAwIFxuLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXG5sYXN0X2V2YWx1YXRpb24gXG4gICAgICBuIG1pc3NpbmcgIHVuaXF1ZSAgICBJbmZvICAgIE1lYW4gICAgIC4wNSAgICAgLjEwICAgICAuMjUgICAgIC41MCAgICAgLjc1ICAgICAuOTAgICAgIC45NSBcbiAgMTQ5OTkgICAgICAgMCAgICAgIDY1ICAgICAgIDEgIDAuNzE2MSAgICAwLjQ2ICAgIDAuNDkgICAgMC41NiAgICAwLjcyICAgIDAuODcgICAgMC45NSAgICAwLjk4IFxuXG5sb3dlc3QgOiAwLjM2IDAuMzcgMC4zOCAwLjM5IDAuNDAsIGhpZ2hlc3Q6IDAuOTYgMC45NyAwLjk4IDAuOTkgMS4wMCBcbi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxubnVtYmVyX3Byb2plY3QgXG4gICAgICBuIG1pc3NpbmcgIHVuaXF1ZSAgICBJbmZvICAgIE1lYW4gXG4gIDE0OTk5ICAgICAgIDAgICAgICAgNiAgICAwLjk0ICAgMy44MDMgXG5cbiAgICAgICAgICAgICAyICAgIDMgICAgNCAgICA1ICAgIDYgICA3XG5GcmVxdWVuY3kgMjM4OCA0MDU1IDQzNjUgMjc2MSAxMTc0IDI1NlxuJSAgICAgICAgICAgMTYgICAyNyAgIDI5ICAgMTggICAgOCAgIDJcbi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxuYXZlcmFnZV9tb250bHlfaG91cnMgXG4gICAgICBuIG1pc3NpbmcgIHVuaXF1ZSAgICBJbmZvICAgIE1lYW4gICAgIC4wNSAgICAgLjEwICAgICAuMjUgICAgIC41MCAgICAgLjc1ICAgICAuOTAgICAgIC45NSBcbiAgMTQ5OTkgICAgICAgMCAgICAgMjE1ICAgICAgIDEgICAyMDEuMSAgICAgMTMwICAgICAxMzcgICAgIDE1NiAgICAgMjAwICAgICAyNDUgICAgIDI2NyAgICAgMjc1IFxuXG5sb3dlc3QgOiAgOTYgIDk3ICA5OCAgOTkgMTAwLCBoaWdoZXN0OiAzMDYgMzA3IDMwOCAzMDkgMzEwIFxuLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXG50aW1lX3NwZW5kX2NvbXBhbnkgXG4gICAgICBuIG1pc3NpbmcgIHVuaXF1ZSAgICBJbmZvICAgIE1lYW4gXG4gIDE0OTk5ICAgICAgIDAgICAgICAgOCAgICAgMC45ICAgMy40OTggXG5cbiAgICAgICAgICAgICAyICAgIDMgICAgNCAgICA1ICAgNiAgIDcgICA4ICAxMFxuRnJlcXVlbmN5IDMyNDQgNjQ0MyAyNTU3IDE0NzMgNzE4IDE4OCAxNjIgMjE0XG4lICAgICAgICAgICAyMiAgIDQzICAgMTcgICAxMCAgIDUgICAxICAgMSAgIDFcbi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxuV29ya19hY2NpZGVudCBcbiAgICAgIG4gbWlzc2luZyAgdW5pcXVlICAgIEluZm8gICAgIFN1bSAgICBNZWFuIFxuICAxNDk5OSAgICAgICAwICAgICAgIDIgICAgMC4zNyAgICAyMTY5ICAwLjE0NDYgXG4tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS1cbmxlZnQgXG4gICAgICBuIG1pc3NpbmcgIHVuaXF1ZSAgICBJbmZvICAgICBTdW0gICAgTWVhbiBcbiAgMTQ5OTkgICAgICAgMCAgICAgICAyICAgIDAuNTQgICAgMzU3MSAgMC4yMzgxIFxuLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXG5wcm9tb3Rpb25fbGFzdF81eWVhcnMgXG4gICAgICBuIG1pc3NpbmcgIHVuaXF1ZSAgICBJbmZvICAgICBTdW0gICAgTWVhbiBcbiAgMTQ5OTkgICAgICAgMCAgICAgICAyICAgIDAuMDYgICAgIDMxOSAwLjAyMTI3IFxuLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXG5zYWxlcyBcbiAgICAgIG4gbWlzc2luZyAgdW5pcXVlIFxuICAxNDk5OSAgICAgICAwICAgICAgMTAgXG5cbiAgICAgICAgICBhY2NvdW50aW5nICBociAgIElUIG1hbmFnZW1lbnQgbWFya2V0aW5nIHByb2R1Y3RfbW5nIFJhbmREIHNhbGVzIHN1cHBvcnQgdGVjaG5pY2FsXG5GcmVxdWVuY3kgICAgICAgIDc2NyA3MzkgMTIyNyAgICAgICAgNjMwICAgICAgIDg1OCAgICAgICAgIDkwMiAgIDc4NyAgNDE0MCAgICAyMjI5ICAgICAgMjcyMFxuJSAgICAgICAgICAgICAgICAgIDUgICA1ICAgIDggICAgICAgICAgNCAgICAgICAgIDYgICAgICAgICAgIDYgICAgIDUgICAgMjggICAgICAxNSAgICAgICAgMThcbi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxuc2FsYXJ5IFxuICAgICAgbiBtaXNzaW5nICB1bmlxdWUgXG4gIDE0OTk5ICAgICAgIDAgICAgICAgMyBcblxuaGlnaCAoMTIzNywgOCUpLCBsb3cgKDczMTYsIDQ5JSksIG1lZGl1bSAoNjQ0NiwgNDMlKSBcbi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxuIn0= -->
+<pre><code>. 
+
+ 10  Variables      14999  Observations
+------------------------------------------------------------------------------------------------------------------
+satisfaction_level 
+      n missing  unique    Info    Mean     .05     .10     .25     .50     .75     .90     .95 
+  14999       0      92       1  0.6128    0.11    0.21    0.44    0.64    0.82    0.92    0.96 
+
+lowest : 0.09 0.10 0.11 0.12 0.13, highest: 0.96 0.97 0.98 0.99 1.00 
+------------------------------------------------------------------------------------------------------------------
+last_evaluation 
+      n missing  unique    Info    Mean     .05     .10     .25     .50     .75     .90     .95 
+  14999       0      65       1  0.7161    0.46    0.49    0.56    0.72    0.87    0.95    0.98 
+
+lowest : 0.36 0.37 0.38 0.39 0.40, highest: 0.96 0.97 0.98 0.99 1.00 
+------------------------------------------------------------------------------------------------------------------
+number_project 
+      n missing  unique    Info    Mean 
+  14999       0       6    0.94   3.803 
+
+             2    3    4    5    6   7
+Frequency 2388 4055 4365 2761 1174 256
+%           16   27   29   18    8   2
+------------------------------------------------------------------------------------------------------------------
+average_montly_hours 
+      n missing  unique    Info    Mean     .05     .10     .25     .50     .75     .90     .95 
+  14999       0     215       1   201.1     130     137     156     200     245     267     275 
+
+lowest :  96  97  98  99 100, highest: 306 307 308 309 310 
+------------------------------------------------------------------------------------------------------------------
+time_spend_company 
+      n missing  unique    Info    Mean 
+  14999       0       8     0.9   3.498 
+
+             2    3    4    5   6   7   8  10
+Frequency 3244 6443 2557 1473 718 188 162 214
+%           22   43   17   10   5   1   1   1
+------------------------------------------------------------------------------------------------------------------
+Work_accident 
+      n missing  unique    Info     Sum    Mean 
+  14999       0       2    0.37    2169  0.1446 
+------------------------------------------------------------------------------------------------------------------
+left 
+      n missing  unique    Info     Sum    Mean 
+  14999       0       2    0.54    3571  0.2381 
+------------------------------------------------------------------------------------------------------------------
+promotion_last_5years 
+      n missing  unique    Info     Sum    Mean 
+  14999       0       2    0.06     319 0.02127 
+------------------------------------------------------------------------------------------------------------------
+sales 
+      n missing  unique 
+  14999       0      10 
+
+          accounting  hr   IT management marketing product_mng RandD sales support technical
+Frequency        767 739 1227        630       858         902   787  4140    2229      2720
+%                  5   5    8          4         6           6     5    28      15        18
+------------------------------------------------------------------------------------------------------------------
+salary 
+      n missing  unique 
+  14999       0       3 
+
+high (1237, 8%), low (7316, 49%), medium (6446, 43%) 
+------------------------------------------------------------------------------------------------------------------</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeShkZilcbmBgYCJ9 -->
+<pre class="r"><code>summary(df)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIHNhdGlzZmFjdGlvbl9sZXZlbCBsYXN0X2V2YWx1YXRpb24gIG51bWJlcl9wcm9qZWN0ICBhdmVyYWdlX21vbnRseV9ob3VycyB0aW1lX3NwZW5kX2NvbXBhbnkgV29ya19hY2NpZGVudCAgIFxuIE1pbi4gICA6MC4wOTAwICAgICBNaW4uICAgOjAuMzYwMCAgIE1pbi4gICA6Mi4wMDAgICBNaW4uICAgOiA5Ni4wICAgICAgICBNaW4uICAgOiAyLjAwMCAgICAgTWluLiAgIDowLjAwMDAgIFxuIDFzdCBRdS46MC40NDAwICAgICAxc3QgUXUuOjAuNTYwMCAgIDFzdCBRdS46My4wMDAgICAxc3QgUXUuOjE1Ni4wICAgICAgICAxc3QgUXUuOiAzLjAwMCAgICAgMXN0IFF1LjowLjAwMDAgIFxuIE1lZGlhbiA6MC42NDAwICAgICBNZWRpYW4gOjAuNzIwMCAgIE1lZGlhbiA6NC4wMDAgICBNZWRpYW4gOjIwMC4wICAgICAgICBNZWRpYW4gOiAzLjAwMCAgICAgTWVkaWFuIDowLjAwMDAgIFxuIE1lYW4gICA6MC42MTI4ICAgICBNZWFuICAgOjAuNzE2MSAgIE1lYW4gICA6My44MDMgICBNZWFuICAgOjIwMS4xICAgICAgICBNZWFuICAgOiAzLjQ5OCAgICAgTWVhbiAgIDowLjE0NDYgIFxuIDNyZCBRdS46MC44MjAwICAgICAzcmQgUXUuOjAuODcwMCAgIDNyZCBRdS46NS4wMDAgICAzcmQgUXUuOjI0NS4wICAgICAgICAzcmQgUXUuOiA0LjAwMCAgICAgM3JkIFF1LjowLjAwMDAgIFxuIE1heC4gICA6MS4wMDAwICAgICBNYXguICAgOjEuMDAwMCAgIE1heC4gICA6Ny4wMDAgICBNYXguICAgOjMxMC4wICAgICAgICBNYXguICAgOjEwLjAwMCAgICAgTWF4LiAgIDoxLjAwMDAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICAgICAgbGVmdCAgICAgICAgcHJvbW90aW9uX2xhc3RfNXllYXJzICAgICAgICAgc2FsZXMgICAgICAgICBzYWxhcnkgICAgXG4gTWluLiAgIDowLjAwMDAgICBNaW4uICAgOjAuMDAwMDAgICAgICAgc2FsZXMgICAgICA6NDE0MCAgIGhpZ2ggIDoxMjM3ICBcbiAxc3QgUXUuOjAuMDAwMCAgIDFzdCBRdS46MC4wMDAwMCAgICAgICB0ZWNobmljYWwgIDoyNzIwICAgbG93ICAgOjczMTYgIFxuIE1lZGlhbiA6MC4wMDAwICAgTWVkaWFuIDowLjAwMDAwICAgICAgIHN1cHBvcnQgICAgOjIyMjkgICBtZWRpdW06NjQ0NiAgXG4gTWVhbiAgIDowLjIzODEgICBNZWFuICAgOjAuMDIxMjcgICAgICAgSVQgICAgICAgICA6MTIyNyAgICAgICAgICAgICAgICBcbiAzcmQgUXUuOjAuMDAwMCAgIDNyZCBRdS46MC4wMDAwMCAgICAgICBwcm9kdWN0X21uZzogOTAyICAgICAgICAgICAgICAgIFxuIE1heC4gICA6MS4wMDAwICAgTWF4LiAgIDoxLjAwMDAwICAgICAgIG1hcmtldGluZyAgOiA4NTggICAgICAgICAgICAgICAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKE90aGVyKSAgICA6MjkyMyAgICAgICAgICAgICAgICBcbiJ9 -->
+<pre><code> satisfaction_level last_evaluation  number_project  average_montly_hours time_spend_company Work_accident   
+ Min.   :0.0900     Min.   :0.3600   Min.   :2.000   Min.   : 96.0        Min.   : 2.000     Min.   :0.0000  
+ 1st Qu.:0.4400     1st Qu.:0.5600   1st Qu.:3.000   1st Qu.:156.0        1st Qu.: 3.000     1st Qu.:0.0000  
+ Median :0.6400     Median :0.7200   Median :4.000   Median :200.0        Median : 3.000     Median :0.0000  
+ Mean   :0.6128     Mean   :0.7161   Mean   :3.803   Mean   :201.1        Mean   : 3.498     Mean   :0.1446  
+ 3rd Qu.:0.8200     3rd Qu.:0.8700   3rd Qu.:5.000   3rd Qu.:245.0        3rd Qu.: 4.000     3rd Qu.:0.0000  
+ Max.   :1.0000     Max.   :1.0000   Max.   :7.000   Max.   :310.0        Max.   :10.000     Max.   :1.0000  
+                                                                                                             
+      left        promotion_last_5years         sales         salary    
+ Min.   :0.0000   Min.   :0.00000       sales      :4140   high  :1237  
+ 1st Qu.:0.0000   1st Qu.:0.00000       technical  :2720   low   :7316  
+ Median :0.0000   Median :0.00000       support    :2229   medium:6446  
+ Mean   :0.2381   Mean   :0.02127       IT         :1227                
+ 3rd Qu.:0.0000   3rd Qu.:0.00000       product_mng: 902                
+ Max.   :1.0000   Max.   :1.00000       marketing  : 858                
+                                        (Other)    :2923                </code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGYgJT4lIFxuICBnbGltcHNlXG5gYGAifQ== -->
+<pre class="r"><code>df %&gt;% 
+  glimpse</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiT2JzZXJ2YXRpb25zOiAxNCw5OTlcblZhcmlhYmxlczogMTBcbiQgc2F0aXNmYWN0aW9uX2xldmVsICAgIDxkYmw+IDAuMzgsIDAuODAsIDAuMTEsIDAuNzIsIDAuMzcsIDAuNDEsIDAuMTAsIDAuOTIsIDAuODksIDAuNDIsIDAuNDUsIDAuMTEsIDAuODQsIDAuLi5cbiQgbGFzdF9ldmFsdWF0aW9uICAgICAgIDxkYmw+IDAuNTMsIDAuODYsIDAuODgsIDAuODcsIDAuNTIsIDAuNTAsIDAuNzcsIDAuODUsIDEuMDAsIDAuNTMsIDAuNTQsIDAuODEsIDAuOTIsIDAuLi5cbiQgbnVtYmVyX3Byb2plY3QgICAgICAgIDxpbnQ+IDIsIDUsIDcsIDUsIDIsIDIsIDYsIDUsIDUsIDIsIDIsIDYsIDQsIDIsIDIsIDIsIDIsIDQsIDIsIDUsIDYsIDIsIDYsIDIsIDIsIDUsIDQuLi5cbiQgYXZlcmFnZV9tb250bHlfaG91cnMgIDxpbnQ+IDE1NywgMjYyLCAyNzIsIDIyMywgMTU5LCAxNTMsIDI0NywgMjU5LCAyMjQsIDE0MiwgMTM1LCAzMDUsIDIzNCwgMTQ4LCAxMzcsIDE0MywuLi5cbiQgdGltZV9zcGVuZF9jb21wYW55ICAgIDxpbnQ+IDMsIDYsIDQsIDUsIDMsIDMsIDQsIDUsIDUsIDMsIDMsIDQsIDUsIDMsIDMsIDMsIDMsIDYsIDMsIDUsIDQsIDMsIDQsIDMsIDMsIDUsIDUuLi5cbiQgV29ya19hY2NpZGVudCAgICAgICAgIDxpbnQ+IDAsIDAsIDAsIDAsIDAsIDAsIDAsIDAsIDAsIDAsIDAsIDAsIDAsIDAsIDAsIDAsIDAsIDAsIDEsIDAsIDAsIDAsIDAsIDAsIDAsIDAsIDAuLi5cbiQgbGVmdCAgICAgICAgICAgICAgICAgIDxpbnQ+IDEsIDEsIDEsIDEsIDEsIDEsIDEsIDEsIDEsIDEsIDEsIDEsIDEsIDEsIDEsIDEsIDEsIDEsIDEsIDEsIDEsIDEsIDEsIDEsIDEsIDEsIDEuLi5cbiQgcHJvbW90aW9uX2xhc3RfNXllYXJzIDxpbnQ+IDAsIDAsIDAsIDAsIDAsIDAsIDAsIDAsIDAsIDAsIDAsIDAsIDAsIDAsIDAsIDAsIDAsIDAsIDEsIDAsIDAsIDAsIDAsIDAsIDAsIDAsIDAuLi5cbiQgc2FsZXMgICAgICAgICAgICAgICAgIDxmY3RyPiBzYWxlcywgc2FsZXMsIHNhbGVzLCBzYWxlcywgc2FsZXMsIHNhbGVzLCBzYWxlcywgc2FsZXMsIHNhbGVzLCBzYWxlcywgc2FsZXMsIHMuLi5cbiQgc2FsYXJ5ICAgICAgICAgICAgICAgIDxmY3RyPiBsb3csIG1lZGl1bSwgbWVkaXVtLCBsb3csIGxvdywgbG93LCBsb3csIGxvdywgbG93LCBsb3csIGxvdywgbG93LCBsb3csIGxvdywgbG8uLi5cbiJ9 -->
+<pre><code>Observations: 14,999
+Variables: 10
+$ satisfaction_level    &lt;dbl&gt; 0.38, 0.80, 0.11, 0.72, 0.37, 0.41, 0.10, 0.92, 0.89, 0.42, 0.45, 0.11, 0.84, 0...
+$ last_evaluation       &lt;dbl&gt; 0.53, 0.86, 0.88, 0.87, 0.52, 0.50, 0.77, 0.85, 1.00, 0.53, 0.54, 0.81, 0.92, 0...
+$ number_project        &lt;int&gt; 2, 5, 7, 5, 2, 2, 6, 5, 5, 2, 2, 6, 4, 2, 2, 2, 2, 4, 2, 5, 6, 2, 6, 2, 2, 5, 4...
+$ average_montly_hours  &lt;int&gt; 157, 262, 272, 223, 159, 153, 247, 259, 224, 142, 135, 305, 234, 148, 137, 143,...
+$ time_spend_company    &lt;int&gt; 3, 6, 4, 5, 3, 3, 4, 5, 5, 3, 3, 4, 5, 3, 3, 3, 3, 6, 3, 5, 4, 3, 4, 3, 3, 5, 5...
+$ Work_accident         &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0...
+$ left                  &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1...
+$ promotion_last_5years &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0...
+$ sales                 &lt;fctr&gt; sales, sales, sales, sales, sales, sales, sales, sales, sales, sales, sales, s...
+$ salary                &lt;fctr&gt; low, medium, medium, low, low, low, low, low, low, low, low, low, low, low, lo...</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGYgJT4lXG4gIGdyb3VwX2J5KHNhbGFyeSkgJT4lIFxuICBtdXRhdGUoc2FsYXJ5X2xvdyA9IChzYWxhcnkgPT0gXCJsb3dcIikpICU+JVxuICBzdW1tYXJpc2UobnVtX3Byb21vdGlvbnMgPSBzdW0ocHJvbW90aW9uX2xhc3RfNXllYXJzKSxcbiAgICAgICAgICAgIHN1bV9wZW9wbGVfZXhpdGVkID0gc3VtKGxlZnQpKVxuYGBgIn0= -->
+<pre class="r"><code>df %&gt;%
+  group_by(salary) %&gt;% 
+  mutate(salary_low = (salary == &quot;low&quot;)) %&gt;%
+  summarise(num_promotions = sum(promotion_last_5years),
+            sum_people_exited = sum(left))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibmNvbCI6MywibnJvdyI6M30sInJkZiI6Ikg0c0lBQUFBQUFBQUJsMVJ5MDdETUJEY3hFbWhrWGlKYitEWUhQb0ppQVBubm5xclRPSTJGbzRkMlE0dEVnZCtpcytqWVYzYnFQVmg3Y25zWm5abnZYcFpMNnQxQlFBNUVKSkRUaEFXT1I0WkZEQjM5d0dBUENMQURMbnhOeWJkRHlkOFVUd1Q3SU1KZytqK2xQVnMwZkZkRnpBUmFoK0xlOWJ5c1U4a3lrWlFFeFgrZGJlMHNVb2pPbUxFS1Y0eG5qRit6cmdWd1BVWHFqeDVXVElsU2xWTExhMjNtdllzYlN5UlMwZWZHU3FvL2d4ZnQzTHNONE5XdmJKY1NSUFlCK05ZcGdiQk51ekFMV3NUNWJsVyt6cXF1MEh6Ynp5bWFmcjFoaTZLcjlUZ3hTRjNXeStUK1RPZEVIZWpkTkx0b3VsRytiNVlPby9oaFNDMHk4SnV6ckJyV2NUZGxORXNrenN1V2R5SG9HOU1ST2RvNGVTZ0hqU1hOaTRUV1ZOYlpXbXNxeG9sSXVNZjYvZ0hnWUdSdkdNQ0FBQT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["salary"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["num_promotions"],"name":[2],"type":["int"],"align":["right"]},{"label":["sum_people_exited"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"high","2":"72","3":"82"},{"1":"low","2":"66","3":"2172"},{"1":"medium","2":"181","3":"1317"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTkFcbmBgYCJ9 -->
+<pre class="r"><code>NA</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6DQogIGh0bWxfZG9jdW1lbnQ6IGRlZmF1bHQNCiAgaHRtbF9ub3RlYm9vazogZGVmYXVsdA0KLS0tDQojIyBLYWdnbGUgSFIgQU5hbHl0aWNzOiBNaWNyb3NvZnQgUiBTZXJ2ZXIgVHJhaW5pbmcNCg0KYGBge3J9DQpsaWJyYXJ5KGRwbHlyKQ0KbGlicmFyeShwdXJycikNCmxpYnJhcnkodGlkeXIpDQpsaWJyYXJ5KEhtaXNjKQ0KYGBgDQpgYGB7cn0NCmRmIDwtIHJlYWQuY3N2KCJIUl9jb21tYV9zZXAuY3N2IikNCg0KZGYgJT4lDQogIHN1bW1hcnkNCg0Kc3VtbWFyeShkZikNCmBgYA0KDQpgYGB7cn0NCmRmICU+JSANCiAgZGVzY3JpYmUNCg0Kc3VtbWFyeShkZikNCmBgYA0KDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6DQogIGh0bWxfZG9jdW1lbnQ6IGRlZmF1bHQNCiAgaHRtbF9ub3RlYm9vazogZGVmYXVsdA0KLS0tDQojIyBLYWdnbGUgSFIgQU5hbHl0aWNzOiBNaWNyb3NvZnQgUiBTZXJ2ZXIgVHJhaW5pbmcNCg0KYGBge3J9DQpsaWJyYXJ5KGRwbHlyKQ0KbGlicmFyeShwdXJycikNCmxpYnJhcnkodGlkeXIpDQpsaWJyYXJ5KEhtaXNjKQ0KYGBgDQpgYGB7cn0NCmRmIDwtIHJlYWQuY3N2KCJIUl9jb21tYV9zZXAuY3N2IikNCg0KZGYgJT4lDQogIHN1bW1hcnkNCg0Kc3VtbWFyeShkZikNCmBgYA0KDQpgYGB7cn0NCmRmICU+JSANCiAgZGVzY3JpYmUNCg0Kc3VtbWFyeShkZikNCmBgYA0KDQpgYGB7cn0NCmRmICU+JSANCiAgZ2xpbXBzZQ0KYGBgDQoNCiAgDQpgYGB7cn0NCmRmICU+JQ0KICBncm91cF9ieShzYWxhcnkpICU+JSANCiAgbXV0YXRlKHNhbGFyeV9sb3cgPSAoc2FsYXJ5ID09ICJsb3ciKSkgJT4lDQogIHN1bW1hcmlzZShudW1fcHJvbW90aW9ucyA9IHN1bShwcm9tb3Rpb25fbGFzdF81eWVhcnMpLA0KICAgICAgICAgICAgc3VtX3Blb3BsZV9leGl0ZWQgPSBzdW0obGVmdCkpDQogIA0KYGBgDQo=</div>
 
 
 

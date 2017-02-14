@@ -28,3 +28,17 @@ df %>%
 summary(df)
 ```
 
+```{r}
+df %>% 
+  glimpse
+```
+
+  
+```{r}
+df %>%
+  group_by(salary) %>% 
+  mutate(salary_low = (salary == "low")) %>%
+  summarise(num_promotions = sum(promotion_last_5years),
+            sum_people_exited = sum(left))
+  
+```
