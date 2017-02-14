@@ -303,6 +303,85 @@ df %&gt;%
 ##  3rd Qu.:0.00000       product_mng: 902                
 ##  Max.   :1.00000       marketing  : 858                
 ##                        (Other)    :2923</code></pre>
+<pre class="r"><code>df %&gt;% 
+  glimpse</code></pre>
+<pre><code>## Observations: 14,999
+## Variables: 10
+## $ satisfaction_level    &lt;dbl&gt; 0.38, 0.80, 0.11, 0.72, 0.37, 0.41, 0.10...
+## $ last_evaluation       &lt;dbl&gt; 0.53, 0.86, 0.88, 0.87, 0.52, 0.50, 0.77...
+## $ number_project        &lt;int&gt; 2, 5, 7, 5, 2, 2, 6, 5, 5, 2, 2, 6, 4, 2...
+## $ average_montly_hours  &lt;int&gt; 157, 262, 272, 223, 159, 153, 247, 259, ...
+## $ time_spend_company    &lt;int&gt; 3, 6, 4, 5, 3, 3, 4, 5, 5, 3, 3, 4, 5, 3...
+## $ Work_accident         &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
+## $ left                  &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1...
+## $ promotion_last_5years &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
+## $ sales                 &lt;fctr&gt; sales, sales, sales, sales, sales, sale...
+## $ salary                &lt;fctr&gt; low, medium, medium, low, low, low, low...</code></pre>
+<pre class="r"><code>df %&gt;%
+  group_by(salary) %&gt;% 
+  mutate(salary_low = (salary == &quot;low&quot;)) %&gt;%
+  summarise(num_promotions = sum(promotion_last_5years),
+            sum_people_exited = sum(left))</code></pre>
+<pre><code>## # A tibble: 3 × 3
+##   salary num_promotions sum_people_exited
+##   &lt;fctr&gt;          &lt;int&gt;             &lt;int&gt;
+## 1   high             72                82
+## 2    low             66              2172
+## 3 medium            181              1317</code></pre>
+<pre class="r"><code>df %&gt;%
+  group_by(salary) %&gt;% 
+  mutate(salary_low = (salary == &quot;low&quot;)) %&gt;%
+  summarise(num_people = n(),
+            frac_promotions = sum(promotion_last_5years)/num_people,
+            frac_people_exited = sum(left)/num_people)</code></pre>
+<pre><code>## # A tibble: 3 × 4
+##   salary num_people frac_promotions frac_people_exited
+##   &lt;fctr&gt;      &lt;int&gt;           &lt;dbl&gt;              &lt;dbl&gt;
+## 1   high       1237     0.058205335         0.06628941
+## 2    low       7316     0.009021323         0.29688354
+## 3 medium       6446     0.028079429         0.20431275</code></pre>
+<pre class="r"><code>df %&gt;%
+  group_by(salary) %&gt;% 
+  mutate(salary_low = (salary == &quot;low&quot;)) %&gt;%
+  summarise(num_people = n(),
+            frac_promotions = sum(promotion_last_5years)/num_people,
+            frac_people_exited = sum(left)/num_people) -&gt; df2
+df2</code></pre>
+<pre><code>## # A tibble: 3 × 4
+##   salary num_people frac_promotions frac_people_exited
+##   &lt;fctr&gt;      &lt;int&gt;           &lt;dbl&gt;              &lt;dbl&gt;
+## 1   high       1237     0.058205335         0.06628941
+## 2    low       7316     0.009021323         0.29688354
+## 3 medium       6446     0.028079429         0.20431275</code></pre>
+<div id="lab-1---dplyr-group-by-and-summarise" class="section level4">
+<h4>Lab 1 - dplyr group by and summarise</h4>
+<ul>
+<li>Taking ‘df’ as the start which is just our dataset:</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>Group by the people who have and haven’t left their firm
+<ul>
+<li>first step</li>
+</ul></li>
+<li>What are the total no of people in each group?
+<ul>
+<li>summarse step</li>
+</ul></li>
+<li>How many had work accidents?
+<ul>
+<li>summarise step</li>
+</ul></li>
+<li>How many had a positive review?
+<ul>
+<li>mutate a boolean where true for a last evaluation above 50%</li>
+<li>summarise of the sum() of that variabe</li>
+</ul></li>
+<li>What is the average satisfaction level?
+<ul>
+<li>averge is the mean() funtion</li>
+</ul></li>
+</ol>
+</div>
 </div>
 
 

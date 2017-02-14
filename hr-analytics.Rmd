@@ -63,3 +63,28 @@ df %>%
 df2
   
 ```
+#### Lab 1 - dplyr group by and summarise
+- Taking 'df' as the start which is just our dataset:
+  1. Group by the people who have and haven't left their firm
+    - first step
+  1.  What are the total no of people in each group?
+    - summarse step
+  1. How many had work accidents? 
+    - summarise step
+  1. How many had a positive review?
+    - mutate a  boolean where true for a last evaluation above 50%
+    - summarise of the sum() of that variabe
+  1. What is the average satisfaction level?
+    - averge is the mean() funtion
+
+#My Solution
+```{r}
+df %>% 
+  group_by(left) %>% 
+  mutate(positive_review = (last_evaluation > .5 )) %>% 
+  summarise(num_people_left = n(),
+            Num_positive_review = sum(positive_review),
+            num_accidents = sum(Work_accident),
+            avg_satisfaction = mean(satisfaction_level)
+            )
+```
