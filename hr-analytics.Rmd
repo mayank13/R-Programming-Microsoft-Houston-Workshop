@@ -106,3 +106,31 @@ df %>%
   arrange(-average_montly_hours) %>% 
   mutate(rank_avg_hours = dense_rank(average_montly_hours))
 ```
+```{r}
+df %>% 
+  filter(last_evaluation>.5) %>% 
+  group_by(left) %>% 
+  arrange(-average_montly_hours) %>% 
+  mutate(rank_avg_hours = dense_rank(average_montly_hours))
+```
+## Exercise 2 
+
+```{r}
+library(dplyr)
+taxi_url <- "http://alizaidi.blob.core.windows.net/training/taxi_df.rds"
+taxi_df  <- readRDS(gzcon(url(taxi_url)))
+(taxi_df <- tbl_df(taxi_df))
+lmsum <- function(nhood){
+   lm_model <- lm(tip_amount ~ trip_distance , 
+                 data = taxi_df %>% 
+                   filter(pickup_nhood == nhood))
+   
+  # s <- summary(lm_model)
+   #return(s) 
+   return(lm_model)
+   
+}
+
+summary(lmsum(nhood="Midtown"))
+```
+
